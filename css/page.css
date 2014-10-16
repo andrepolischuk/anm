@@ -1,0 +1,49 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans);
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'PT Sans', sans-serif;
+  background-color: #fff;
+}
+
+h1, h2, h3, h4 {
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 75px;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 40px;
+}
+
+h4 {
+  font-size: 30px;
+}
+
+body {
+  display: table;
+}
+
+.btn-group {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+}
+
+.container-fluid {
+  display: table-cell;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  vertical-align: middle;
+}
