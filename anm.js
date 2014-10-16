@@ -152,6 +152,20 @@
    * Module exports
    */
   
-  window.anm = anm;
+  if (typeof define === 'function' && define.amd) {
  
-}();
+    define([], function() {
+      return anm;
+    });
+ 
+  } else if (typeof module !== 'undefined' && module.exports) {
+ 
+    module.exports = anm;
+ 
+  } else {
+ 
+    this.anm = anm;
+ 
+  }
+ 
+}.call(this);
