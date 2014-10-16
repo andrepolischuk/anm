@@ -8,7 +8,7 @@
   /**
    * Object classes
    */
-  
+
   var elementClass = document.body.getAttribute('data-anm');
 
   /**
@@ -28,13 +28,13 @@
   /**
    * Pause flag
    */
-  
+
   var pause;
 
   /**
    * Effects
    */
-  
+
   var effects = {
     '-webkit-transform' : 'translate3d',
        '-moz-transform' : 'translate3d',
@@ -47,7 +47,7 @@
    * Anm
    * @api public
    */
- 
+
   function anm() {
 
   }
@@ -63,7 +63,7 @@
    * On animation
    * @api public
    */
-  
+
   anm.on = function() {
     pause = false;
   };
@@ -72,7 +72,7 @@
    * Off animation
    * @api public
    */
-  
+
   anm.off = function() {
     pause = true;
   };
@@ -81,7 +81,7 @@
    * Toggle animation
    * @api public
    */
-  
+
   anm.toggle = function() {
     pause = !pause;
   };
@@ -90,7 +90,7 @@
    * Set elements positions
    * @api private
    */
-  
+
   var position = function(e) {
 
     if (pause) {
@@ -139,33 +139,33 @@
   /**
    * Set start position
    */
-  
+
   position();
 
   /**
    * Set mousemove
    */
-  
+
   window.onmousemove = position;
-  
+
   /**
    * Module exports
    */
-  
+
   if (typeof define === 'function' && define.amd) {
- 
+
     define([], function() {
       return anm;
     });
- 
+
   } else if (typeof module !== 'undefined' && module.exports) {
- 
+
     module.exports = anm;
- 
+
   } else {
- 
+
     this.anm = anm;
- 
+
   }
- 
+
 }.call(this);
