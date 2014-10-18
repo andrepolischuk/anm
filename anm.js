@@ -97,8 +97,11 @@
       return false;
     }
 
-    var x = !e ? 0 : (e.x - window.innerWidth / 2) * 30 / window.innerWidth;
-    var y = !e ? 0 : (e.y - window.innerHeight / 2) * 30 / window.innerHeight;
+    e = e || window.event || {};
+    e = e.type === 'touchmove' ? e.changedTouches[0] : e;
+
+    var x = !e ? 0 : (e.clientX - window.innerWidth / 2) * 30 / window.innerWidth;
+    var y = !e ? 0 : (e.clientY - window.innerHeight / 2) * 30 / window.innerHeight;
 
     for (var i = 0, offsetX, offsetY, el, string; i < elements.length; i++) {
 
@@ -143,10 +146,11 @@
   position();
 
   /**
-   * Set mousemove
+   * Set move event handler
    */
 
-  window.onmousemove = position;
+  window.addEventListener(('ontouchstart' in window || 'onmsgesturechange' in window) ?
+    'touchmove' : 'mousemove', position, false);
 
   /**
    * Module exports
