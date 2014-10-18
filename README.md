@@ -1,6 +1,6 @@
 # Anm
 
-  Page animations by mouse moves
+  Page animations by mouse and touch moves
 
 ## Instalation  
 
