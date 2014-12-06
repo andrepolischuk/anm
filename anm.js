@@ -1,7 +1,7 @@
 // Anm © 2014 Andrey Polischuk
 // https://github.com/andrepolischuk/anm
 
-!function(undefined) {
+!function() {
 
   'use strict';
 
@@ -16,7 +16,7 @@
    */
 
   if (!elementClass) {
-    return false;
+    return;
   }
 
   /**
@@ -91,10 +91,10 @@
    * @api private
    */
 
-  var position = function(e) {
+  function position(e) {
 
     if (pause) {
-      return false;
+      return;
     }
 
     e = e || window.event || {};
@@ -137,7 +137,7 @@
 
     }
 
-  };
+  }
 
   /**
    * Set start position
