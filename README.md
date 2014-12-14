@@ -2,12 +2,12 @@
 
   Page animations by mouse and touch moves
 
-## Instalation  
+## Instalation
 
   Via script tag in page sources:
 
 ```html
-<script src="/static/js/anm.min.js"></script>
+<script src="//cdn.rawgit.com/andrepolischuk/anm/1.0.1/anm.min.js"></script>
 ```
 
   Set anm elements class:
@@ -42,7 +42,7 @@
 ## API
 
 ### anm.elements
-  
+
   Animated elements array
 
 ### anm.on()
@@ -54,7 +54,7 @@
   Disable animations
 
 ### anm.toggle()
-  
+
   Toggle enabled of animations
 
 
