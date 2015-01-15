@@ -1,5 +1,5 @@
-// Anm © 2014 Andrey Polischuk
-// https://github.com/andrepolischuk/anm
+// Anm © 2014-2015 Andrey Polischuk
+// github.com/andrepolischuk/anm
 
 !function() {
 
