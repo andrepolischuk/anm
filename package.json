@@ -1,0 +1,19 @@
+{
+  "name": "anm",
+  "description": "Page animations by mouse and touch moves",
+  "version": "1.0.1",
+  "keywords": [
+    "page",
+    "mouse",
+    "touch",
+    "move",
+    "animation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andrepolischuk/anm.git"
+  },
+  "main": "anm.js",
+  "author": "Andrey Polischuk <andre.polischuk@gmail.com>",
+  "license": "MIT"
+}
