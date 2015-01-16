@@ -27,6 +27,13 @@
     +navigator.userAgent.replace(/.*MSIE.(\d+)\..*/gi, "$1") < 9;
 
   /**
+   * Event name
+   */
+
+  var eventName = 'ontouchstart' in window ||
+    'onmsgesturechange' in window ? 'touchmove' : 'mousemove';
+
+  /**
    * Pause flag
    */
 
@@ -229,8 +236,13 @@
    * Set move event handler
    */
 
-  window.addEventListener(('ontouchstart' in window || 'onmsgesturechange' in window) ?
-    'touchmove' : 'mousemove', position, false);
+  if (window.addEventListener) {
+    window.addEventListener(eventName, position, false);
+  } else {
+    window.attachEvent('onmousemove', function() {
+      position.call(window, window.event);
+    });
+  }
 
   /**
    * Module exports
