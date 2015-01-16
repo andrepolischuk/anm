@@ -212,9 +212,7 @@
       return;
     }
 
-    e = e || {};
     e = e.type === 'touchmove' ? e.changedTouches[0] : e;
-
     var fact, transform, pos = calculatePosition(e);
 
     for (var i = 0, el; i < elements.length; i++) {
@@ -230,7 +228,7 @@
    * Set start position
    */
 
-  position();
+  position({});
 
   /**
    * Set move event handler
