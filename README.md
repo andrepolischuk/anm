@@ -7,7 +7,7 @@
   Via script tag in page sources:
 
 ```html
-<script src="https://cdn.rawgit.com/andrepolischuk/anm/1.0.1/anm.min.js"></script>
+<script src="https://cdn.rawgit.com/andrepolischuk/anm/1.1.0/anm.min.js"></script>
 ```
 
   Component(1):
