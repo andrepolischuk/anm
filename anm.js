@@ -20,10 +20,11 @@
   }
 
   /**
-   * IE check
+   * IE lt 9 detection
    */
 
-  var msie = /.*MSIE.(\d+)\..*/gi.test(navigator.userAgent);
+  var msie = /MSIE.\d+\./gi.test(navigator.userAgent) &&
+    +navigator.userAgent.replace(/.*MSIE.(\d+)\..*/gi, "$1") < 9;
 
   /**
    * Pause flag
