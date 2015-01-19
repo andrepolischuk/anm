@@ -4,7 +4,7 @@
 
 ## Instalation
 
-  Via script tag in page sources:
+  Browser:
 
 ```html
 <script src="https://cdn.rawgit.com/andrepolischuk/anm/1.1.0/anm.min.js"></script>
