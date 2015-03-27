@@ -16,6 +16,9 @@
     "andrepolischuk/ea": "^0.3.0",
     "component/type": "^1.1.0"
   },
+  "development": {
+    "component/assert": "^0.5.0"
+  },
   "main" : "index.js",
   "scripts" : [
     "index.js"

@@ -19,6 +19,9 @@
     "ea": "^0.3.0",
     "component-type": "^1.1.0"
   },
+  "devDependencies": {
+    "mocha": "^2.2.1"
+  },
   "main": "index.js",
   "author": "Andrey Polischuk <andre.polischuk@gmail.com>",
   "license": "MIT"
