@@ -103,7 +103,8 @@ function Animate(el) {
  */
 
 Animate.prototype.set = function(prop, val) {
-  this._factors[prop] = parseInt(val);
+  this._factors[prop] = type(val) === 'function' ?
+    val : parseInt(val);
   return this;
 };
 
@@ -127,21 +128,12 @@ each(transforms, function(transform, prop) {
  */
 
 Animate.prototype.update = function() {
-  var factors = this._factors;
-  var element = this.element;
-  var values = {};
-
-  values.x = cursor.x * (factors.x || 0) + 'px';
-  values.y = cursor.y * (factors.y || 0) + 'px';
-  values.scale = 1 + (cursor.r * (factors.scale || 0));
-  values.opacity = 1 - (cursor.r * Math.abs(factors.opacity || 0));
-  values.rotate = -cursor.s * cursor.r * 100 * (factors.rotate || 0) + 'deg';
-
+  var self = this;
   var css = {};
-  var transform;
 
-  each(values, function(value, param) {
-    transform = transforms[param];
+  each(transforms, function(transform, param) {
+    var value = self.calculate(param);
+    value += transform.ext || '';
     value = param === 'opacity' ? value : transform.func + '(' + value + ')';
 
     each(prefix[transform.prop], function(pref) {
@@ -150,9 +142,38 @@ Animate.prototype.update = function() {
   });
 
   each(css, function(value, prop) {
-    element.style[prop] = value;
+    self.element.style[prop] = value;
   });
-}
+};
+
+/**
+ * Calculate element transform
+ * @param  {String} param
+ * @return {Number}
+ * @api public
+ */
+
+Animate.prototype.calculate = function(param) {
+  var factors = this._factors;
+  if (type(factors[param]) === 'function') return factors[param](cursor);
+
+  var r = cursor.r / 50 /
+    Math.sqrt(Math.pow(window.innerWidth, 2) +
+    Math.pow(window.innerHeight, 2));
+
+  switch (param) {
+    case 'x':
+      return cursor.x / 100 * (factors.x || 0);
+    case 'y':
+      return cursor.y / 100 * (factors.y || 0);
+    case 'scale':
+      return 1 + (r * (factors.scale || 0));
+    case 'opacity':
+      return 1 - (r * Math.abs(factors.opacity || 0));
+    case 'rotate':
+      return -cursor.s * r * (factors.rotate || 0);
+  }
+};
 
 /**
  * Elements
@@ -224,21 +245,13 @@ function position(e) {
  */
 
 function calculatePosition(cursor, e) {
-  var width = window.innerWidth;
-  var height = window.innerHeight;
-
   e = e.type === 'touchmove' ? e.changedTouches[0] : e;
-
-  cursor.x = e.clientX - width / 2 || 0;
-  cursor.y = e.clientY - height / 2 || 0;
+  cursor.x = e.clientX - window.innerWidth / 2 || 0;
+  cursor.y = e.clientY - window.innerHeight / 2 || 0;
   cursor.fi = (Math.atan(cursor.x === 0 ? Infinity : -cursor.y / cursor.x) +
     (cursor.x < 0 ? Math.PI : (-cursor.y < 0 ? 2 * Math.PI : 0)));
-  cursor.s = 45 * Math.sin(2 * cursor.fi) / 100;
-  cursor.x /= 100;
-  cursor.y /= 100;
-  cursor.r = Math.sqrt(Math.pow(cursor.x, 2) + Math.pow(cursor.y, 2)) /
-    Math.sqrt(Math.pow(width, 2) +
-    Math.pow(height, 2)) * 2;
+  cursor.s = 45 * Math.sin(2 * cursor.fi);
+  cursor.r = Math.sqrt(Math.pow(cursor.x, 2) + Math.pow(cursor.y, 2));
 }
 
 /**
