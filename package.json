@@ -15,7 +15,11 @@
     "type": "git",
     "url": "git://github.com/andrepolischuk/anm.git"
   },
-  "main": "anm.js",
+  "dependencies": {
+    "ea": "^0.3.0",
+    "component-type": "^1.1.0"
+  },
+  "main": "index.js",
   "author": "Andrey Polischuk <andre.polischuk@gmail.com>",
   "license": "MIT"
 }

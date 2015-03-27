@@ -12,9 +12,13 @@
     "effect"
   ],
   "repository": "andrepolischuk/anm",
-  "main" : "anm.js",
+  "dependencies": {
+    "andrepolischuk/ea": "^0.3.0",
+    "component/type": "^1.1.0"
+  },
+  "main" : "index.js",
   "scripts" : [
-    "anm.js"
+    "index.js"
   ],
   "license": "MIT"
 }
