@@ -1,3 +1,9 @@
+# 1.2.0 / 2015.03.28
+
+  * Add API #7
+  * Add transform functions
+  * Add test
+
 # 1.1.0 / 2015.01.16
 
   * Add npm support #5

@@ -1,15 +1,14 @@
 {
   "name": "anm",
   "description": "Page animations by mouse and touch moves",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "keywords": [
     "page",
     "mouse",
     "touch",
     "move",
     "animation",
-    "parallax",
-    "effect"
+    "parallax"
   ],
   "repository": "andrepolischuk/anm",
   "dependencies": {
