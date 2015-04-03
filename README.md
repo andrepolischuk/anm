@@ -122,67 +122,13 @@ anm('.element').scale(75);
 anm('.element').rotate(25);
 ```
 
-## Data attributes
-
-  Define animations via data-* attributes
-
-### Elements
-
-  Set elements class:
-
-```html
-<body data-anm=".anm">
-```
-
-## Factors
-
-### data-speed-x
-
-  Set horizontal motion
-
-```html
-<h2 data-speed-x="25">...</h2>
-```
-
-### data-speed-y
-
-  Set vertical motion
-
-```html
-<h2 data-speed-y="-15">...</h2>
-```
-
-### data-speed-scale
-
-  Set scaling
-
-```html
-<h2 data-speed-scale="-40">...</h2>
-```
-
-### data-speed-opacity
-
-  Set opacity
-
-```html
-<h2 data-speed-opacity="50">...</h2>
-```
-
-### data-speed-rotation
-
-  Set rotation
-
-```html
-<h2 data-speed-rotate="35">...</h2>
-```
-
 ## Support
 
   * Chrome
   * Safari
   * Firefox
   * Opera
-  * Internet Explorer 9+
+  * IE 9+
 
 ## License
 
