@@ -21,6 +21,9 @@
   "devDependencies": {
     "mocha": "^2.2.1"
   },
+  "browser": {
+    "type": "component-type"
+  },
   "main": "index.js",
   "author": "Andrey Polischuk <andre.polischuk@gmail.com>",
   "license": "MIT"
