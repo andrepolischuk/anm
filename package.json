@@ -15,7 +15,7 @@
     "url": "git://github.com/andrepolischuk/anm.git"
   },
   "dependencies": {
-    "ea": "^0.3.0",
+    "ea": "^0.4.0",
     "component-type": "^1.1.0"
   },
   "devDependencies": {
