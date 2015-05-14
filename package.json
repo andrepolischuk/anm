@@ -10,16 +10,10 @@
     "animation",
     "parallax"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/andrepolischuk/anm.git"
-  },
+  "repository": "andrepolischuk/anm",
   "dependencies": {
     "ea": "^0.4.0",
     "component-type": "^1.1.0"
-  },
-  "devDependencies": {
-    "mocha": "^2.2.1"
   },
   "browser": {
     "type": "component-type"

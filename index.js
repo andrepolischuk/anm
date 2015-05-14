@@ -79,7 +79,8 @@ var prefix = {
 module.exports = Animate;
 
 /**
- * Anm
+ * Animate
+ *
  * @param {String|Element} el
  * @api public
  */
@@ -97,8 +98,10 @@ function Animate(el) {
 
 /**
  * Attach transform props
- * @param {String} prop
- * @param {Number} val
+ *
+ * @param  {String} prop
+ * @param  {Number} val
+ * @return {Object}
  * @api public
  */
 
@@ -110,6 +113,7 @@ Animate.prototype.set = function(prop, val) {
 
 /**
  * Attach transform prop
+ *
  * @param  {Number} val
  * @return {Object}
  * @api public
@@ -124,6 +128,7 @@ each(transforms, function(transform, prop) {
 
 /**
  * Update element transform
+ *
  * @api public
  */
 
@@ -148,6 +153,7 @@ Animate.prototype.update = function() {
 
 /**
  * Calculate element transform
+ *
  * @param  {String} param
  * @return {Number}
  * @api public
@@ -176,7 +182,8 @@ Animate.prototype.calculate = function(param) {
 };
 
 /**
- * Elements
+ * Expose elements
+ *
  * @api public
  */
 
@@ -184,6 +191,7 @@ Animate.elements = [];
 
 /**
  * Expose animation on
+ *
  * @api public
  */
 
@@ -193,6 +201,7 @@ Animate.on = function() {
 
 /**
  * Expose animation off
+ *
  * @api public
  */
 
@@ -202,6 +211,7 @@ Animate.off = function() {
 
 /**
  * Expose animation toggle
+ *
  * @api public
  */
 
@@ -225,6 +235,8 @@ position({});
 
 /**
  * Set elements positions
+ *
+ * @param {Object} e
  * @api private
  */
 
@@ -239,6 +251,7 @@ function position(e) {
 
 /**
  * Calculate cursor position
+ *
  * @param {Object} cursor
  * @param {Object} e
  * @api private
@@ -262,6 +275,7 @@ parseDom();
 
 /**
  * Parse DOM
+ *
  * @api private
  */
 
@@ -278,6 +292,7 @@ function parseDom() {
 
 /**
  * Parse element
+ *
  * @param {Element} element
  * @api private
  */

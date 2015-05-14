@@ -1,30 +1,19 @@
-# Anm
+# anm
 
-  Page animations by mouse and touch moves
+  > Page animations by mouse and touch moves
 
 ## Instalation
 
-  Browser:
-
-```html
-<script src="https://cdn.rawgit.com/andrepolischuk/anm/1.2.0/anm.min.js"></script>
-```
-
-  Component(1):
-
 ```sh
+$ npm install --save anm
 $ component install andrepolischuk/anm
 ```
 
-  Npm:
-
-```sh
-$ npm install anm
-```
-
-## Example
+## Usage
 
 ```js
+var anm = require('anm');
+
 anm('.element')
   .x(15)
   .y(-15)
@@ -66,17 +55,15 @@ anm(document.querySelector('.element'))
   Set transform factor
 
 ```js
-anm('.element')
-  .set('scale', 50);
+anm('.element').set('scale', 50);
 ```
 
   or transform function
 
 ```js
-anm('.element')
-  .set('x', function(cursor) {
-    return cursor.x * 0.5;
-  });
+anm('.element').set('x', function(cursor) {
+  return cursor.x * 0.5;
+});
 ```
 
   All factors set in percent of max value.
