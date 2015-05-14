@@ -30,27 +30,27 @@ var cursor = {};
  */
 
 var transforms = {
-  x : {
-    prop : 'transform',
-    ext  : 'px',
-    func : 'translateX'
+  x: {
+    prop: 'transform',
+    ext: 'px',
+    func: 'translateX'
   },
-  y : {
-    prop : 'transform',
-    ext  : 'px',
-    func : 'translateY'
+  y: {
+    prop: 'transform',
+    ext: 'px',
+    func: 'translateY'
   },
-  scale : {
-    prop : 'transform',
-    func : 'scale'
+  scale: {
+    prop: 'transform',
+    func: 'scale'
   },
-  rotate : {
-    prop : 'transform',
-    ext  : 'deg',
-    func : 'rotate'
+  rotate: {
+    prop: 'transform',
+    ext: 'deg',
+    func: 'rotate'
   },
-  opacity : {
-    prop : 'opacity'
+  opacity: {
+    prop: 'opacity'
   }
 };
 
@@ -59,14 +59,14 @@ var transforms = {
  */
 
 var prefix = {
-  transform : [
+  transform: [
     'webkitTransform',
     'MozTransform',
     'msTransform',
     'oTransform',
     'transform'
   ],
-  opacity : [
+  opacity: [
     'MozOpacity',
     'opacity'
   ]
@@ -242,7 +242,7 @@ position({});
 
 function position(e) {
   if (pause) return;
-  calculatePosition(cursor, e);
+  calculatePosition(e);
 
   each(Animate.elements, function(element) {
     element.update();
@@ -252,12 +252,11 @@ function position(e) {
 /**
  * Calculate cursor position
  *
- * @param {Object} cursor
  * @param {Object} e
  * @api private
  */
 
-function calculatePosition(cursor, e) {
+function calculatePosition(e) {
   e = e.type === 'touchmove' ? e.changedTouches[0] : e;
   cursor.x = e.clientX - window.innerWidth / 2 || 0;
   cursor.y = e.clientY - window.innerHeight / 2 || 0;
