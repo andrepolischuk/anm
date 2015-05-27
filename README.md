@@ -8,7 +8,7 @@
 $ npm install --save anm
 ```
 
-```js
+```sh
 $ component install andrepolischuk/anm
 ```
 
