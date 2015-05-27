@@ -6,6 +6,9 @@
 
 ```sh
 $ npm install --save anm
+```
+
+```js
 $ component install andrepolischuk/anm
 ```
 
@@ -25,32 +28,14 @@ anm('.element')
 
 ### anm(element)
 
-  Return [animate](#animate)
+  Create animation
 
 ```js
 anm('.element')
 anm(document.querySelector('.element'))
 ```
 
-### anm.elements
-
-  Animated elements array
-
-### anm.on()
-
-  Enable animations
-
-### anm.off()
-
-  Disable animations
-
-### anm.toggle()
-
-  Toggle enabled of animations
-
-### Animate
-
-#### Animate#set(prop, val)
+### .set(prop, val)
 
   Set transform factor
 
@@ -69,7 +54,7 @@ anm('.element').set('x', function(cursor) {
   All factors set in percent of max value.
   Positive values set direct motion, negative - inverse (excluding opacity).
 
-#### Animate#opacity(val)
+### .opacity(val)
 
   Set opacity
 
@@ -77,7 +62,7 @@ anm('.element').set('x', function(cursor) {
 anm('.element').opacity(50);
 ```
 
-#### Animate#x(val)
+### .x(val)
 
   Set horizontal movement
 
@@ -85,7 +70,7 @@ anm('.element').opacity(50);
 anm('.element').x(-15);
 ```
 
-#### Animate#y(val)
+### .y(val)
 
   Set vertical movement
 
@@ -93,7 +78,7 @@ anm('.element').x(-15);
 anm('.element').y(-15);
 ```
 
-#### Animate#scale(val)
+### .scale(val)
 
   Set rescaling
 
@@ -101,13 +86,25 @@ anm('.element').y(-15);
 anm('.element').scale(75);
 ```
 
-#### Animate#rotate(val)
+### .rotate(val)
 
   Set rotation
 
 ```js
 anm('.element').rotate(25);
 ```
+
+### anm.on()
+
+  Enable animations
+
+### anm.off()
+
+  Disable animations
+
+### anm.toggle()
+
+  Toggle enabled of animations
 
 ## Support
 
