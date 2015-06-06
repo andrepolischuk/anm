@@ -2,14 +2,14 @@
 
   > Page animations by mouse and touch moves
 
-## Instalation
+## Install
 
 ```sh
-$ npm install --save anm
+npm install --save anm
 ```
 
 ```sh
-$ component install andrepolischuk/anm
+component install andrepolischuk/anm
 ```
 
 ## Usage
