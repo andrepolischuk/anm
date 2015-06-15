@@ -1,146 +1,23 @@
-(function outer(modules, cache, entries){
-
-  /**
-   * Global
-   */
-
-  var global = (function(){ return this; })();
-
-  /**
-   * Require `name`.
-   *
-   * @param {String} name
-   * @param {Boolean} jumped
-   * @api public
-   */
-
-  function require(name, jumped){
-    if (cache[name]) return cache[name].exports;
-    if (modules[name]) return call(name, require);
-    throw new Error('cannot find module "' + name + '"');
-  }
-
-  /**
-   * Call module `id` and cache it.
-   *
-   * @param {Number} id
-   * @param {Function} require
-   * @return {Function}
-   * @api private
-   */
-
-  function call(id, require){
-    var m = { exports: {} };
-    var mod = modules[id];
-    var name = mod[2];
-    var fn = mod[0];
-
-    fn.call(m.exports, function(req){
-      var dep = modules[id][1][req];
-      return require(dep || req);
-    }, m, m.exports, outer, modules, cache, entries);
-
-    // store to cache after successful resolve
-    cache[id] = m;
-
-    // expose as `name`.
-    if (name) cache[name] = cache[id];
-
-    return cache[id].exports;
-  }
-
-  /**
-   * Require all entries exposing them on global if needed.
-   */
-
-  for (var id in entries) {
-    if (entries[id]) {
-      global[entries[id]] = require(id);
-    } else {
-      require(id);
-    }
-  }
-
-  /**
-   * Duo flag.
-   */
-
-  require.duo = true;
-
-  /**
-   * Expose cache.
-   */
-
-  require.cache = cache;
-
-  /**
-   * Expose modules
-   */
-
-  require.modules = modules;
-
-  /**
-   * Return newest require.
-   */
-
-   return require;
-})({
-1: [function(require, module, exports) {
-
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var anm = require('andrepolischuk/anm@1.2.0');
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-anm('.anm-vt')
-  .y(-2)
-  .scale(-15)
-  .opacity(50);
+var _anm = require('anm');
 
-anm('.anm-ht')
-  .x(4)
-  .scale(-25)
-  .opacity(50);
+var _anm2 = _interopRequireDefault(_anm);
 
-anm('.anm-tl')
-  .x(-16)
-  .y(2)
-  .scale(50)
-  .rotate(25);
+(0, _anm2['default'])('.vertical-p').y(25);
+(0, _anm2['default'])('.vertical-m').y(-25);
+(0, _anm2['default'])('.horizontal-p').x(50);
+(0, _anm2['default'])('.horizontal-m').x(-50);
+(0, _anm2['default'])('.scale-p').scale(50);
+(0, _anm2['default'])('.scale-m').scale(-50);
+(0, _anm2['default'])('.rotate-p').rotate(50);
+(0, _anm2['default'])('.rotate-m').rotate(-50);
+(0, _anm2['default'])('.opacity-p').opacity(75);
 
-anm('.anm-gh')
-  .x(16)
-  .y(-2)
-  .scale(50)
-  .rotate(-25);
-
-anm('.anm-hb')
-  .x(-4)
-  .scale(-25)
-  .opacity(50);
-
-anm('.anm-vb')
-  .y(2)
-  .scale(15)
-  .opacity(50);
-
-anm('.text-muted').x(2).y(-1);
-
-var buttons = document.querySelectorAll('.btn-default');
-
-buttons[0].addEventListener('click', function() {
-  anm.on();
-  buttons[1].classList.remove('active');
-  buttons[0].classList.add('active');
-}, false);
-
-buttons[1].addEventListener('click', function() {
-  anm.off();
-  buttons[0].classList.remove('active');
-  buttons[1].classList.add('active');
-}, false);
-
-}, {"andrepolischuk/anm@1.2.0":2}],
-2: [function(require, module, exports) {
+},{"anm":2}],2:[function(require,module,exports){
 
 'use strict';
 
@@ -173,27 +50,27 @@ var cursor = {};
  */
 
 var transforms = {
-  x : {
-    prop : 'transform',
-    ext  : 'px',
-    func : 'translateX'
+  x: {
+    prop: 'transform',
+    ext: 'px',
+    func: 'translateX'
   },
-  y : {
-    prop : 'transform',
-    ext  : 'px',
-    func : 'translateY'
+  y: {
+    prop: 'transform',
+    ext: 'px',
+    func: 'translateY'
   },
-  scale : {
-    prop : 'transform',
-    func : 'scale'
+  scale: {
+    prop: 'transform',
+    func: 'scale'
   },
-  rotate : {
-    prop : 'transform',
-    ext  : 'deg',
-    func : 'rotate'
+  rotate: {
+    prop: 'transform',
+    ext: 'deg',
+    func: 'rotate'
   },
-  opacity : {
-    prop : 'opacity'
+  opacity: {
+    prop: 'opacity'
   }
 };
 
@@ -202,14 +79,14 @@ var transforms = {
  */
 
 var prefix = {
-  transform : [
+  transform: [
     'webkitTransform',
     'MozTransform',
     'msTransform',
     'oTransform',
     'transform'
   ],
-  opacity : [
+  opacity: [
     'MozOpacity',
     'opacity'
   ]
@@ -222,7 +99,8 @@ var prefix = {
 module.exports = Animate;
 
 /**
- * Anm
+ * Animate
+ *
  * @param {String|Element} el
  * @api public
  */
@@ -240,8 +118,10 @@ function Animate(el) {
 
 /**
  * Attach transform props
- * @param {String} prop
- * @param {Number} val
+ *
+ * @param  {String} prop
+ * @param  {Number} val
+ * @return {Object}
  * @api public
  */
 
@@ -253,6 +133,7 @@ Animate.prototype.set = function(prop, val) {
 
 /**
  * Attach transform prop
+ *
  * @param  {Number} val
  * @return {Object}
  * @api public
@@ -267,6 +148,7 @@ each(transforms, function(transform, prop) {
 
 /**
  * Update element transform
+ *
  * @api public
  */
 
@@ -291,6 +173,7 @@ Animate.prototype.update = function() {
 
 /**
  * Calculate element transform
+ *
  * @param  {String} param
  * @return {Number}
  * @api public
@@ -319,7 +202,8 @@ Animate.prototype.calculate = function(param) {
 };
 
 /**
- * Elements
+ * Expose elements
+ *
  * @api public
  */
 
@@ -327,6 +211,7 @@ Animate.elements = [];
 
 /**
  * Expose animation on
+ *
  * @api public
  */
 
@@ -336,6 +221,7 @@ Animate.on = function() {
 
 /**
  * Expose animation off
+ *
  * @api public
  */
 
@@ -345,6 +231,7 @@ Animate.off = function() {
 
 /**
  * Expose animation toggle
+ *
  * @api public
  */
 
@@ -368,12 +255,14 @@ position({});
 
 /**
  * Set elements positions
+ *
+ * @param {Object} e
  * @api private
  */
 
 function position(e) {
   if (pause) return;
-  calculatePosition(cursor, e);
+  calculatePosition(e);
 
   each(Animate.elements, function(element) {
     element.update();
@@ -382,12 +271,12 @@ function position(e) {
 
 /**
  * Calculate cursor position
- * @param {Object} cursor
+ *
  * @param {Object} e
  * @api private
  */
 
-function calculatePosition(cursor, e) {
+function calculatePosition(e) {
   e = e.type === 'touchmove' ? e.changedTouches[0] : e;
   cursor.x = e.clientX - window.innerWidth / 2 || 0;
   cursor.y = e.clientY - window.innerHeight / 2 || 0;
@@ -397,47 +286,7 @@ function calculatePosition(cursor, e) {
   cursor.r = Math.sqrt(Math.pow(cursor.x, 2) + Math.pow(cursor.y, 2));
 }
 
-/**
- * Init animations from DOM attributes
- */
-
-parseDom();
-
-/**
- * Parse DOM
- * @api private
- */
-
-function parseDom() {
-  var elementClass = document.body.getAttribute('data-anm');
-  if (!elementClass) return;
-
-  var elements = document.querySelectorAll(elementClass);
-
-  each(elements, function(el) {
-    parseElement(el);
-  });
-}
-
-/**
- * Parse element
- * @param {Element} element
- * @api private
- */
-
-function parseElement(el) {
-  var animated = Animate(el);
-  var attr;
-
-  each(transforms, function(transform, param) {
-    attr = el.getAttribute('data-speed-' + param);
-    if (!attr) return;
-    animated[param](attr);
-  });
-}
-
-}, {"type":3,"component-type":3,"ea":4}],
-3: [function(require, module, exports) {
+},{"component-type":3,"ea":4,"type":3}],3:[function(require,module,exports){
 /**
  * toString ref.
  */
@@ -473,8 +322,7 @@ module.exports = function(val){
   return typeof val;
 };
 
-}, {}],
-4: [function(require, module, exports) {
+},{}],4:[function(require,module,exports){
 
 'use strict';
 
@@ -502,6 +350,7 @@ module.exports = each;
 
 /**
  * Expose reverse iterate
+ *
  * @param {Object|Array} obj
  * @param {Function} fn
  * @return {Function}
@@ -514,6 +363,7 @@ module.exports.reverse = function(obj, fn) {
 
 /**
  * Iteration router
+ *
  * @param {Object|Array} obj
  * @param {Function} fn
  * @return {Function}
@@ -538,6 +388,7 @@ function each(obj, fn, direction) {
 
 /**
  * Iterate array
+ *
  * @param {Array} obj
  * @param {Function} fn
  * @api private
@@ -551,19 +402,21 @@ function array(obj, fn) {
 
 /**
  * Iterate array in reverse order
+ *
  * @param {Array} obj
  * @param {Function} fn
  * @api private
  */
 
 array.reverse = function(obj, fn) {
-  for (var i = obj.length - 1; i >= 0 ; i--) {
+  for (var i = obj.length - 1; i >= 0; i--) {
     fn(obj[i], i);
   }
 };
 
 /**
  * Iterate object
+ *
  * @param {Object} obj
  * @param {Function} fn
  * @api private
@@ -579,6 +432,7 @@ function object(obj, fn) {
 
 /**
  * Iterate object in reverse order
+ *
  * @param {Object} obj
  * @param {Function} fn
  * @api private
@@ -598,6 +452,7 @@ object.reverse = function(obj, fn) {
 
 /**
  * Iterate string
+ *
  * @param {Array} obj
  * @param {Function} fn
  * @api private
@@ -611,15 +466,16 @@ function string(obj, fn) {
 
 /**
  * Iterate string in reverse order
+ *
  * @param {Array} obj
  * @param {Function} fn
  * @api private
  */
 
 string.reverse = function(obj, fn) {
-  for (var i = obj.length - 1; i >= 0 ; i--) {
+  for (var i = obj.length - 1; i >= 0; i--) {
     fn(obj.charAt(i), i);
   }
 };
 
-}, {"type":3,"component-type":3}]}, {}, {"1":""})
+},{"component-type":3,"type":3}]},{},[1]);

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Anm</title>
+  <title>anm</title>
   <link href="build/index.css" rel="stylesheet">
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -11,24 +11,34 @@
   <![endif]-->
 </head>
 <body>
-  <div class="btn-group" data-toggle="buttons">
-    <label class="btn btn-default active">
-      <input type="radio" name="options" id="on" checked> On
-    </label>
-    <label class="btn btn-default">
-      <input type="radio" name="options" id="off"> Off
-    </label>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>
+        anm
+      </h1>
+      <p>
+        Page animations by mouse and touch moves
+      </p>
+      <p class="text-muted">
+        2.0.1
+        &middot;
+        <a href="https://github.com/andrepolischuk/anm">GitHub</a>
+      </p>
+    </div>
   </div>
-  <div class="container-fluid text-center">
-    <h4 class="anm anm-vt">Vertical</h4>
-    <h3 class="anm anm-ht">Horizontal</h3>
-    <h1 class="anm anm-tl">Anm</h1>
-    <h2 class="anm anm-gh"><a href="https://github.com/andrepolischuk/anm">Github</a></h2>
-    <h3 class="anm anm-hb">Horizontal</h3>
-    <h4 class="anm anm-vb">Vertical</h4>
-    <br>
-    <p class="anm text-muted">&copy; 2014-2015 Andrey Polischuk</p>
+
+  <div class="container text-center">
+    <h2 class="vertical-p">+Vertical</h2>
+    <h2 class="vertical-m">&minus;Vertical</h2>
+    <h2 class="horizontal-p">+Horizontal</h2>
+    <h2 class="horizontal-m">&minus;Horizontal</h2>
+    <h2 class="scale-p">+Scale</h2>
+    <h2 class="scale-m">&minus;Scale</h2>
+    <h2 class="rotate-p">+Rotate</h2>
+    <h2 class="rotate-m">&minus;Rotate</h2>
+    <h2 class="opacity-p">+Opacity</h2>
   </div>
+
   <script src="build/index.js"></script>
 </body>
 </html>
