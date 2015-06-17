@@ -5208,7 +5208,3 @@ body {
     text-align: left;
   }
 }
-
-.jumbotron + .container {
-  overflow: hidden visible;
-}
