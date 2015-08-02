@@ -1,9 +1,5 @@
-
 'use strict';
-
-/**
- * Module dependencies
- */
+var each = require('ea');
 
 try {
   var type = require('type');
@@ -11,23 +7,8 @@ try {
   var type = require('component-type');
 }
 
-var each = require('ea');
-
-/**
- * Pause flag
- */
-
 var pause;
-
-/**
- * Cursor position
- */
-
 var cursor = {};
-
-/**
- * Transform parameters
- */
 
 var transforms = {
   x: {
@@ -54,10 +35,6 @@ var transforms = {
   }
 };
 
-/**
- * CSS prefixes for transform parameters
- */
-
 var prefix = {
   transform: [
     'webkitTransform',
@@ -72,65 +49,27 @@ var prefix = {
   ]
 };
 
-/**
- * Expose anm
- */
-
 module.exports = Animate;
-
-/**
- * Animate
- *
- * @param {String|Element} el
- * @api public
- */
 
 function Animate(el) {
   if (!(this instanceof Animate)) return new Animate(el);
   if (type(el) === 'string') el = document.querySelector(el);
   if (!el) return;
-
   this.element = el;
   this._factors = {};
-
   Animate.elements.push(this);
 }
 
-/**
- * Attach transform props
- *
- * @param  {String} prop
- * @param  {Number} val
- * @return {Object}
- * @api public
- */
-
 Animate.prototype.set = function(prop, val) {
-  this._factors[prop] = type(val) === 'function' ?
-    val : parseInt(val);
+  this._factors[prop] = type(val) === 'function' ? val : parseInt(val);
   return this;
 };
 
-/**
- * Attach transform prop
- *
- * @param  {Number} val
- * @return {Object}
- * @api public
- */
-
 each(transforms, function(transform, prop) {
   Animate.prototype[prop] = function(val) {
-    this.set(prop, val);
-    return this;
+    return this.set(prop, val);
   };
 });
-
-/**
- * Update element transform
- *
- * @api public
- */
 
 Animate.prototype.update = function() {
   var self = this;
@@ -150,14 +89,6 @@ Animate.prototype.update = function() {
     self.element.style[prop] = value;
   });
 };
-
-/**
- * Calculate element transform
- *
- * @param  {String} param
- * @return {Number}
- * @api public
- */
 
 Animate.prototype.calculate = function(param) {
   var factors = this._factors;
@@ -181,64 +112,25 @@ Animate.prototype.calculate = function(param) {
   }
 };
 
-/**
- * Expose elements
- *
- * @api public
- */
-
 Animate.elements = [];
-
-/**
- * Expose animation on
- *
- * @api public
- */
 
 Animate.on = function() {
   pause = false;
 };
 
-/**
- * Expose animation off
- *
- * @api public
- */
-
 Animate.off = function() {
   pause = true;
 };
-
-/**
- * Expose animation toggle
- *
- * @api public
- */
 
 Animate.toggle = function() {
   pause = !pause;
 };
 
-/**
- * Add handling
- */
-
 window.addEventListener('ontouchstart' in window ||
   'onmsgesturechange' in window ?
   'touchmove' : 'mousemove', position, false);
 
-/**
- * Set start position
- */
-
 position({});
-
-/**
- * Set elements positions
- *
- * @param {Object} e
- * @api private
- */
 
 function position(e) {
   if (pause) return;
@@ -248,13 +140,6 @@ function position(e) {
     element.update();
   });
 }
-
-/**
- * Calculate cursor position
- *
- * @param {Object} e
- * @api private
- */
 
 function calculatePosition(e) {
   e = e.type === 'touchmove' ? e.changedTouches[0] : e;
