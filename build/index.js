@@ -18,12 +18,8 @@ var _anm2 = _interopRequireDefault(_anm);
 (0, _anm2['default'])('.opacity-p').opacity(75);
 
 },{"anm":2}],2:[function(require,module,exports){
-
 'use strict';
-
-/**
- * Module dependencies
- */
+var each = require('ea');
 
 try {
   var type = require('type');
@@ -31,23 +27,8 @@ try {
   var type = require('component-type');
 }
 
-var each = require('ea');
-
-/**
- * Pause flag
- */
-
 var pause;
-
-/**
- * Cursor position
- */
-
 var cursor = {};
-
-/**
- * Transform parameters
- */
 
 var transforms = {
   x: {
@@ -74,10 +55,6 @@ var transforms = {
   }
 };
 
-/**
- * CSS prefixes for transform parameters
- */
-
 var prefix = {
   transform: [
     'webkitTransform',
@@ -92,65 +69,27 @@ var prefix = {
   ]
 };
 
-/**
- * Expose anm
- */
-
 module.exports = Animate;
-
-/**
- * Animate
- *
- * @param {String|Element} el
- * @api public
- */
 
 function Animate(el) {
   if (!(this instanceof Animate)) return new Animate(el);
   if (type(el) === 'string') el = document.querySelector(el);
   if (!el) return;
-
   this.element = el;
   this._factors = {};
-
   Animate.elements.push(this);
 }
 
-/**
- * Attach transform props
- *
- * @param  {String} prop
- * @param  {Number} val
- * @return {Object}
- * @api public
- */
-
 Animate.prototype.set = function(prop, val) {
-  this._factors[prop] = type(val) === 'function' ?
-    val : parseInt(val);
+  this._factors[prop] = type(val) === 'function' ? val : parseInt(val);
   return this;
 };
 
-/**
- * Attach transform prop
- *
- * @param  {Number} val
- * @return {Object}
- * @api public
- */
-
 each(transforms, function(transform, prop) {
   Animate.prototype[prop] = function(val) {
-    this.set(prop, val);
-    return this;
+    return this.set(prop, val);
   };
 });
-
-/**
- * Update element transform
- *
- * @api public
- */
 
 Animate.prototype.update = function() {
   var self = this;
@@ -170,14 +109,6 @@ Animate.prototype.update = function() {
     self.element.style[prop] = value;
   });
 };
-
-/**
- * Calculate element transform
- *
- * @param  {String} param
- * @return {Number}
- * @api public
- */
 
 Animate.prototype.calculate = function(param) {
   var factors = this._factors;
@@ -201,64 +132,25 @@ Animate.prototype.calculate = function(param) {
   }
 };
 
-/**
- * Expose elements
- *
- * @api public
- */
-
 Animate.elements = [];
-
-/**
- * Expose animation on
- *
- * @api public
- */
 
 Animate.on = function() {
   pause = false;
 };
 
-/**
- * Expose animation off
- *
- * @api public
- */
-
 Animate.off = function() {
   pause = true;
 };
-
-/**
- * Expose animation toggle
- *
- * @api public
- */
 
 Animate.toggle = function() {
   pause = !pause;
 };
 
-/**
- * Add handling
- */
-
 window.addEventListener('ontouchstart' in window ||
   'onmsgesturechange' in window ?
   'touchmove' : 'mousemove', position, false);
 
-/**
- * Set start position
- */
-
 position({});
-
-/**
- * Set elements positions
- *
- * @param {Object} e
- * @api private
- */
 
 function position(e) {
   if (pause) return;
@@ -268,13 +160,6 @@ function position(e) {
     element.update();
   });
 }
-
-/**
- * Calculate cursor position
- *
- * @param {Object} e
- * @api private
- */
 
 function calculatePosition(e) {
   e = e.type === 'touchmove' ? e.changedTouches[0] : e;
@@ -323,12 +208,7 @@ module.exports = function(val){
 };
 
 },{}],4:[function(require,module,exports){
-
 'use strict';
-
-/**
- * Module dependencies
- */
 
 try {
   var type = require('type');
@@ -336,146 +216,38 @@ try {
   var type = require('component-type');
 }
 
-/**
- * Has own property
- */
+module.exports = function(obj, fn) {
+  if (type(fn) !== 'function') return;
 
-var has = Object.prototype.hasOwnProperty;
-
-/**
- * Expose direct iterate
- */
-
-module.exports = each;
-
-/**
- * Expose reverse iterate
- *
- * @param {Object|Array} obj
- * @param {Function} fn
- * @return {Function}
- * @api public
- */
-
-module.exports.reverse = function(obj, fn) {
-  return each(obj, fn, 'reverse');
-};
-
-/**
- * Iteration router
- *
- * @param {Object|Array} obj
- * @param {Function} fn
- * @return {Function}
- * @api public
- */
-
-function each(obj, fn, direction) {
-  if (typeof fn === 'function') {
-    switch (type(obj)) {
-      case 'array':
-        return (array[direction] || array)(obj, fn);
-      case 'object':
-        if (type(obj.length) === 'number') {
-          return (array[direction] || array)(obj, fn);
-        }
-        return (object[direction] || object)(obj, fn);
-      case 'string':
-        return (string[direction] || string)(obj, fn);
-    }
+  switch (type(obj)) {
+    case 'array':
+      return array(obj, fn);
+    case 'object':
+      if (type(obj.length) === 'number') return array(obj, fn);
+      return object(obj, fn);
+    case 'string':
+      return string(obj, fn);
   }
-}
-
-/**
- * Iterate array
- *
- * @param {Array} obj
- * @param {Function} fn
- * @api private
- */
+};
 
 function array(obj, fn) {
-  for (var i = 0; i < obj.length; i++) {
+  for (var i = 0, len = obj.length; i < len; i++) {
     fn(obj[i], i);
   }
 }
-
-/**
- * Iterate array in reverse order
- *
- * @param {Array} obj
- * @param {Function} fn
- * @api private
- */
-
-array.reverse = function(obj, fn) {
-  for (var i = obj.length - 1; i >= 0; i--) {
-    fn(obj[i], i);
-  }
-};
-
-/**
- * Iterate object
- *
- * @param {Object} obj
- * @param {Function} fn
- * @api private
- */
 
 function object(obj, fn) {
   for (var i in obj) {
-    if (has.call(obj, i)) {
+    if (obj.hasOwnProperty(i)) {
       fn(obj[i], i);
     }
   }
 }
 
-/**
- * Iterate object in reverse order
- *
- * @param {Object} obj
- * @param {Function} fn
- * @api private
- */
-
-object.reverse = function(obj, fn) {
-  var keys = [];
-  for (var k in obj) {
-    if (has.call(obj, k)) {
-      keys.push(k);
-    }
-  }
-  for (var i = keys.length - 1; i >= 0; i--) {
-    fn(obj[keys[i]], keys[i]);
-  }
-};
-
-/**
- * Iterate string
- *
- * @param {Array} obj
- * @param {Function} fn
- * @api private
- */
-
 function string(obj, fn) {
-  for (var i = 0; i < obj.length; i++) {
+  for (var i = 0, len = obj.length; i < len; i++) {
     fn(obj.charAt(i), i);
   }
 }
-
-/**
- * Iterate string in reverse order
- *
- * @param {Array} obj
- * @param {Function} fn
- * @api private
- */
-
-string.reverse = function(obj, fn) {
-  for (var i = obj.length - 1; i >= 0; i--) {
-    fn(obj.charAt(i), i);
-  }
-};
 
 },{"component-type":3,"type":3}]},{},[1]);

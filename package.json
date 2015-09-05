@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "repository": "andrepolischuk/anm",
   "dependencies": {
-    "anm": "^2.0.1",
+    "anm": "^2.0.2",
     "bootstrap-gh-pages": "^0.2.1"
   },
   "devDependencies": {

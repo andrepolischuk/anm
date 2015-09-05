@@ -1,6 +1,4 @@
-
 import anm from 'anm';
-
 anm('.vertical-p').y(25);
 anm('.vertical-m').y(-25);
 anm('.horizontal-p').x(50);
