@@ -1,12 +1,6 @@
 'use strict';
 var each = require('ea');
-
-try {
-  var type = require('type');
-} catch (err) {
-  var type = require('component-type');
-}
-
+var type = require('component-type');
 var pause;
 var cursor = {};
 
