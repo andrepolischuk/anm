@@ -1,6 +1,6 @@
 # anm
 
-  > Page animations by mouse and touch moves
+> Page animations by mouse and touch moves
 
 ## Install
 
@@ -24,7 +24,7 @@ anm('.element')
 
 ### anm(element)
 
-  Create animation
+Create animation
 
 ```js
 anm('.element')
@@ -33,13 +33,13 @@ anm(document.querySelector('.element'))
 
 ### .set(prop, val)
 
-  Set transform factor
+Set transform factor
 
 ```js
 anm('.element').set('scale', 50);
 ```
 
-  or transform function
+or transform function
 
 ```js
 anm('.element').set('x', function(cursor) {
@@ -47,12 +47,12 @@ anm('.element').set('x', function(cursor) {
 });
 ```
 
-  All factors set in percent of max value.
-  Positive values set direct motion, negative - inverse (excluding opacity).
+All factors set in percent of max value.
+Positive values set direct motion, negative - inverse (excluding opacity).
 
 ### .opacity(val)
 
-  Set opacity
+Set opacity
 
 ```js
 anm('.element').opacity(50);
@@ -60,7 +60,7 @@ anm('.element').opacity(50);
 
 ### .x(val)
 
-  Set horizontal movement
+Set horizontal movement
 
 ```js
 anm('.element').x(-15);
@@ -68,7 +68,7 @@ anm('.element').x(-15);
 
 ### .y(val)
 
-  Set vertical movement
+Set vertical movement
 
 ```js
 anm('.element').y(-15);
@@ -76,7 +76,7 @@ anm('.element').y(-15);
 
 ### .scale(val)
 
-  Set rescaling
+Set rescaling
 
 ```js
 anm('.element').scale(75);
@@ -84,7 +84,7 @@ anm('.element').scale(75);
 
 ### .rotate(val)
 
-  Set rotation
+Set rotation
 
 ```js
 anm('.element').rotate(25);
@@ -92,23 +92,23 @@ anm('.element').rotate(25);
 
 ### anm.on()
 
-  Enable animations
+Enable animations
 
 ### anm.off()
 
-  Disable animations
+Disable animations
 
 ### anm.toggle()
 
-  Toggle enabled of animations
+Toggle enabled of animations
 
 ## Support
 
-  * Chrome
-  * Safari
-  * Firefox
-  * Opera
-  * IE 9+
+* Chrome
+* Safari
+* Firefox
+* Opera
+* IE 9+
 
 ## License
 
