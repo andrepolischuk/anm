@@ -1,6 +1,5 @@
 'use strict';
 var each = require('ea');
-var type = require('component-type');
 var pause;
 var cursor = {};
 
@@ -47,7 +46,7 @@ module.exports = Animate;
 
 function Animate(el) {
   if (!(this instanceof Animate)) return new Animate(el);
-  if (type(el) === 'string') el = document.querySelector(el);
+  if (typeof el === 'string') el = document.querySelector(el);
   if (!el) return;
   this.element = el;
   this._factors = {};
@@ -55,7 +54,7 @@ function Animate(el) {
 }
 
 Animate.prototype.set = function(prop, val) {
-  this._factors[prop] = type(val) === 'function' ? val : parseInt(val);
+  this._factors[prop] = typeof val === 'function' ? val : parseInt(val);
   return this;
 };
 
@@ -86,7 +85,7 @@ Animate.prototype.update = function() {
 
 Animate.prototype.calculate = function(param) {
   var factors = this._factors;
-  if (type(factors[param]) === 'function') return factors[param](cursor);
+  if (typeof factors[param] === 'function') return factors[param](cursor);
 
   var r = cursor.r / 50 /
     Math.sqrt(Math.pow(window.innerWidth, 2) +
