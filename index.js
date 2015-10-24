@@ -1,4 +1,5 @@
 'use strict';
+var coordinates = require('coordinates');
 var each = require('ea');
 var pause;
 var cursor = {};
@@ -86,6 +87,8 @@ Animate.prototype.update = function() {
 Animate.prototype.calculate = function(param) {
   var factors = this._factors;
   if (typeof factors[param] === 'function') return factors[param](cursor);
+  var fi = 2 * Math.PI - cursor.fi;
+  var s = 45 * Math.sin(2 * fi);
 
   var r = cursor.r / 50 /
     Math.sqrt(Math.pow(window.innerWidth, 2) +
@@ -101,7 +104,7 @@ Animate.prototype.calculate = function(param) {
     case 'opacity':
       return 1 - (r * Math.abs(factors.opacity || 0));
     case 'rotate':
-      return -cursor.s * r * (factors.rotate || 0);
+      return -s * r * (factors.rotate || 0);
   }
 };
 
@@ -127,19 +130,17 @@ position({});
 
 function position(e) {
   if (pause) return;
-  calculatePosition(e);
+  e = e.type === 'touchmove' ? e.changedTouches[0] : e;
+
+  cursor = coordinates({
+    x: e.clientX || 0,
+    y: e.clientY || 0
+  }, {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2
+  });
 
   each(Animate.elements, function(element) {
     element.update();
   });
-}
-
-function calculatePosition(e) {
-  e = e.type === 'touchmove' ? e.changedTouches[0] : e;
-  cursor.x = e.clientX - window.innerWidth / 2 || 0;
-  cursor.y = e.clientY - window.innerHeight / 2 || 0;
-  cursor.fi = (Math.atan(cursor.x === 0 ? Infinity : -cursor.y / cursor.x) +
-    (cursor.x < 0 ? Math.PI : (-cursor.y < 0 ? 2 * Math.PI : 0)));
-  cursor.s = 45 * Math.sin(2 * cursor.fi);
-  cursor.r = Math.sqrt(Math.pow(cursor.x, 2) + Math.pow(cursor.y, 2));
 }
